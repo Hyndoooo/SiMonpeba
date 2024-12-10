@@ -1,0 +1,106 @@
+body {
+    background-color: #F0F0F0;
+}
+
+/* Style untuk chat container */
+.chat-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    height: 90vh;
+    width: 100%;
+    max-width: 600px;
+    margin: auto;
+    background-color: #f8f8f8;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.chat-box {
+    flex: 1;
+    padding: 15px;
+    overflow-y: auto;
+    background-color: #fff;
+    border-radius: 10px 10px 0 0;
+}
+
+.header-chat {
+    text-align: center;
+    margin-bottom: 15px;
+}
+
+.messages {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.message {
+    display: flex;
+    align-items: flex-start;
+    max-width: 75%;
+    padding: 10px;
+    border-radius: 20px;
+    background-color: #e0e0e0;
+    word-wrap: break-word;
+}
+
+.message.sent {
+    align-self: flex-end;
+    background-color: #0066ff;
+    color: white;
+}
+
+.message.received {
+    background-color: #f1f1f1;
+}
+
+.message-content {
+    display: flex;
+    flex-direction: column;
+}
+
+.message-time {
+    font-size: 0.8rem;
+    color: #888;
+    text-align: right;
+    margin-top: 5px;
+}
+
+.message-input {
+    padding: 10px;
+    background-color: #fff;
+    border-radius: 0 0 10px 10px;
+    display: flex;
+    gap: 10px; /* Jarak antara textarea dan tombol */
+    align-items: center; /* Vertikal sejajar */
+}
+
+textarea.form-control {
+    flex: 1; /* Mengambil ruang yang tersisa */
+    padding: 10px;
+    border-radius: 10px;
+    border: 1px solid #ccc;
+    font-size: 14px;
+    background-color: #f9f9f9;
+}
+
+textarea.form-control:focus {
+    border-color: #0066ff;
+    outline: none;
+}
+
+.btn-send {
+    background-color: #0066ff;
+    color: white;
+    padding: 10px 20px;
+    border-radius: 10px;
+    border: none;
+    font-size: 16px;
+    cursor: pointer;
+    flex-shrink: 0; /* Tombol tidak mengecil */
+}
+
+.btn-send:hover {
+    background-color: #0055d4;
+}

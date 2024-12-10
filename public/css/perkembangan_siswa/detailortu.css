@@ -1,0 +1,275 @@
+/* Container Pembungkus Foto Profil (Border Kotak) */
+.foto-profil-wrapper {
+    display: inline-block;
+    padding: 5px;
+    border: 2px solid #ccc;
+    border-radius: 15px;
+    transition: border-color 0.3s ease;
+}
+
+/* Tab navigasi */
+.tabs {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    margin-top: 20px;
+    padding-bottom: 10px;
+    border-bottom: 3px solid #1AABA5;
+    position: relative;
+}
+
+.tabs ul {
+    display: flex;
+    list-style: none;
+    gap: 30px;
+}
+
+.tabs .tab {
+    font-size: 18px;
+    color: #333;
+    cursor: pointer;
+    position: relative;
+    padding-bottom: 10px;
+}
+
+/* Transisi underline pada tab yang aktif */
+.tabs .tab.active::after {
+    content: '';
+    position: absolute;
+    bottom: 1px;
+    left: 0;
+    width: 100%;
+    height: 3px;
+    background-color: #1AABA5;
+    transition: all 0.3s ease;
+}
+
+/* Styling untuk tab yang aktif */
+.tabs .tab.active {
+    font-weight: bold;
+    color: #1AABA5;
+    position: relative;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 5px;
+}
+
+/* Hover pada tab yang tidak aktif */
+.tabs .tab:hover {
+    color: #1AABA5;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: box-shadow 0.3s ease, color 0.3s ease;
+}
+
+/* Efek transisi untuk underline */
+.underline {
+    width: 100px;
+    height: 3px;
+    background-color: #1AABA5;
+    position: absolute;
+    bottom: 0;
+    transition: left 0.3s ease, width 0.3s ease;
+}
+
+/* Container untuk Foto Profil (Border Bulat) */
+.foto-profil-container {
+    position: relative;
+    display: inline-block;
+    width: 150px;
+    height: 150px;
+    border: 2px solid #ccc;
+    border-radius: 50%;
+    overflow: hidden;
+    text-align: center;
+    background-color: #f8f9fa;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    transition: transform 0.3s ease, border-color 0.3s ease;
+}
+
+/* Efek hover pada foto profil */
+.foto-profil-container:hover {
+    transform: scale(1.05);
+    border-color: #1AABA5;
+}
+
+/* Menampilkan ikon upload saat hover */
+#iconUpload {
+    font-size: 40px;
+    color: #1AABA5;
+    position: absolute;
+    display: none;
+    transition: transform 0.3s ease;
+}
+
+/* Menampilkan ikon upload saat hover */
+.foto-profil-container:hover #iconUpload {
+    display: block;
+    transform: scale(1.1);
+}
+
+/* Mengatur gambar foto profil */
+#previewFoto {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+/* Styling untuk form dan elemen input */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f7f9;
+}
+
+.outer-container {
+    margin-top: 30px;
+}
+
+.container {
+    background-color: #ffffff;
+    border-radius: 10px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    padding: 30px;
+}
+
+header {
+    background-color: #1AABA5;
+    padding: 20px;
+    color: white;
+    border-radius: 10px 10px 0 0;
+}
+
+header h2 {
+    font-size: 24px;
+    font-weight: bold;
+}
+
+.header-buttons {
+    position: absolute;
+    top: 50%;
+    right: 15px;
+    transform: translateY(-50%);
+    display: flex;
+    gap: 10px; /* Memberikan jarak antar tombol */
+}
+
+.btn-icon {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px; /* Jarak antara ikon dan teks */
+    background-color: #ffffff;
+    color: #333;
+    border: 1px solid #ccc;
+    padding: 8px 15px;
+    border-radius: 15px;
+    font-size: 14px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
+}
+
+.btn-icon i {
+    font-size: 16px;
+    color: #1AABA5;
+}
+
+.btn-icon:hover {
+    background-color: #1AABA5;
+    color: #ffffff;
+    border-color: #179d92;
+}
+
+.btn-icon:hover i {
+    color: #ffffff;
+}
+
+.card {
+    padding: 30px;
+}
+
+.text-center {
+    text-align: center;
+}
+
+.text-muted {
+    font-size: 0.875rem;
+}
+
+.form-label {
+    font-weight: bold;
+}
+
+input[type="text"], input[type="email"], input[type="date"], textarea, select {
+    width: 100%;
+    padding: 12px;
+    margin: 8px 0;
+    border-radius: 8px;
+    border: 1px solid #ddd;
+    background-color: #f9f9f9;
+    font-size: 1rem;
+}
+
+input[type="text"]:focus, input[type="email"]:focus, input[type="date"]:focus, textarea:focus, select:focus {
+    border-color: #1AABA5;
+    outline: none;
+}
+
+textarea {
+    resize: vertical;
+    min-height: 150px;
+}
+
+.invalid-feedback {
+    font-size: 0.875rem;
+    color: #dc3545;
+}
+
+button[type="submit"], .btn-save {
+    background-color: #1AABA5;
+    color: white;
+    border: none;
+    padding: 12px 30px;
+    border-radius: 8px;
+    font-size: 1.1rem;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+button[type="submit"]:hover, .btn-save:hover {
+    background-color: #179d92;
+}
+
+/* Styling untuk form layout */
+.form-container {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    width: 100%;
+}
+
+.form-column {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+.text-right {
+    text-align: right;
+}
+
+@media (max-width: 768px) {
+    .profile-container {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .foto-profil-container {
+        width: 120px;
+        height: 120px;
+    }
+
+    .form-container {
+        width: 100%;
+    }
+}

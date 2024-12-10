@@ -1,0 +1,117 @@
+/* Mengatur margin dan padding 0 untuk seluruh halaman */
+body, html {
+    margin: 0; /* Menghilangkan margin default */
+    padding: 0; /* Menghilangkan padding default */
+    height: 100%; /* Mengatur tinggi untuk mengambil 100% dari viewport */
+    width: 100%; /* Mengatur lebar untuk mengambil 100% dari viewport */
+    font-family: 'Roboto', sans-serif; /* Mengatur jenis font untuk seluruh halaman */
+}
+
+/* Wrapper utama untuk membagi layout menjadi dua bagian */
+.wrapper {
+    display: flex; /* Menggunakan Flexbox untuk layout */
+    flex-direction: column; /* Mengatur arah flex menjadi kolom */
+    height: 100vh; /* Tinggi 100% dari viewport */
+}
+
+/* Bagian atas dengan latar belakang hijau */
+.top-section {
+    background-color: #00b8a9; /* Warna hijau untuk bagian atas */
+    height: 80%; /* Mengisi 80% dari tinggi viewport */
+    display: flex; /* Menggunakan Flexbox untuk layout */
+    justify-content: flex-start; /* Mengatur konten ke kiri */
+    align-items: center; /* Menyelaraskan item secara vertikal di tengah */
+    padding-left: 30px; /* Memberikan padding kiri untuk jarak dari tepi */
+    position: relative; /* Menempatkan elemen relatif terhadap posisi normalnya */
+}
+
+/* Bagian bawah dengan latar belakang putih */
+.bottom-section {
+    background-color: white; /* Warna putih untuk bagian bawah */
+    height: 20%; /* Mengisi 20% dari tinggi viewport */
+    display: flex; /* Menggunakan Flexbox untuk layout */
+    justify-content: center; /* Menyelaraskan konten di tengah secara horizontal */
+    align-items: center; /* Menyelaraskan item secara vertikal di tengah */
+    position: relative; /* Menempatkan elemen relatif terhadap posisi normalnya */
+}
+
+/* Menambahkan style untuk judul SiMonpeba */
+.top-section h1 {
+    font-size: 48px; /* Ukuran font lebih besar */
+    color: white; /* Warna teks putih */
+    margin: 0; /* Menghilangkan margin default */
+}
+
+/* Formulir di dalam box */
+form {
+    background-color: white; /* Background putih untuk form */
+    padding: 40px; /* Padding dalam form */
+    border-radius: 20px; /* Membuat sudut box melengkung */
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2); /* Menambahkan bayangan pada form */
+    width: 80%; /* Mengurangi lebar box menjadi 80% */
+    max-width: 350px; /* Membatasi lebar maksimal form menjadi 350px */
+    position: absolute; /* Menempatkan form secara absolut dalam konteks elemen induk */
+    top: calc(50% - 180px); /* Menempatkan form sedikit lebih tinggi */
+    left: 70%; /* Menggeser form sedikit ke kanan */
+    transform: translate(-50%, -50%); /* Menjaga posisi centering form */
+    height: 350px; /* Mengatur tinggi box */
+}
+
+/* Menambahkan style untuk logo */
+.logo {
+    max-width: 80%; /* Menentukan lebar maksimum gambar */
+    height: auto; /* Menjaga proporsi gambar */
+    display: block; /* Memastikan gambar ditampilkan sebagai blok */
+    margin-left: 30px; /* Memberikan jarak dari tepi kiri */
+    margin-top: 120px; /* Menambahkan jarak dari atas untuk menggeser logo ke bawah */
+}
+
+/* Pengaturan untuk input */
+input[type="text"],
+input[type="password"] {
+    padding: 10px; /* Menambah padding pada input */
+    border: 1px solid #ccc; /* Garis border */
+    border-radius: 5px; /* Sudut border melengkung */
+    width: 100%; /* Mengisi lebar 100% dari container */
+    font-size: 16px; /* Ukuran font */
+    margin-top: 5px; /* Spasi atas input */
+}
+
+/* Menambahkan jarak antara inputan dan tombol */
+.mt-4 {
+    margin-top: 30px; /* Jarak antara input dan tombol */
+}
+
+/* Style untuk tombol login */
+.login-button {
+    width: 100%; /* Lebar 100% */
+    padding: 10px; /* Padding pada tombol */
+    background-color: #00b8a9; /* Warna hijau untuk tombol */
+    color: white; /* Warna teks putih */
+    border: none; /* Tanpa border */
+    border-radius: 5px; /* Sudut tombol melengkung */
+    font-size: 16px; /* Ukuran font tombol */
+    cursor: pointer; /* Kursor tangan saat hover */
+    transition: background-color 0.3s ease; /* Transisi warna saat hover */
+}
+
+.login-button:hover {
+    background-color: #008f7a; /* Warna saat hover */
+}
+
+/* Style untuk header form */
+.form-header {
+    font-size: 24px; /* Ukuran font header */
+    color: #000000; /* Warna teks header */
+    margin-bottom: 20px; /* Jarak antara header dan input */
+    text-align: left; /* Rata kiri */
+}
+
+.underline {
+    width: 100px;
+    height: 3px;
+    background-color: #1AABA5;
+    position: absolute;
+    bottom: -3px; /* Posisikan di bawah tab */
+    transition: left 0.3s ease, width 0.3s ease;
+}

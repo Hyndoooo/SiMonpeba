@@ -1,0 +1,164 @@
+/* Wrapper untuk membungkus seluruh konten */
+.wrapper {
+    padding: 20px;
+    background-color: #f8f9fa;
+    min-height: calc(100vh - 120px); /* Menyesuaikan tinggi layar */
+    box-sizing: border-box;
+    border-radius: 10px 10px 0 0; /* Border-radius untuk container */
+    overflow: hidden; /* Untuk mencegah konten keluar */
+}
+
+/* Header Styling */
+header {
+    text-align: left;
+    padding: 20px;
+    background-color: #1AABA5;
+    color: white;
+    font-weight: bold;
+    margin-bottom: 20px;
+    border-radius: 10px 10px 0 0; /* Border-radius untuk header */
+}
+
+/* Kontainer dan heading */
+.container {
+    max-width: 100%; /* Perlebar container */
+    margin: 0 auto;
+    padding: 10px;
+}
+
+h1 {
+    font-size: 24px;
+    font-weight: bold;
+    text-transform: uppercase;
+    color: #333;
+    border-bottom: 2px solid teal;
+    padding-bottom: 10px;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+/* Container untuk gambar bukti media */
+.bukti-media {
+    position: absolute;
+    top: 50%;
+    right: 10px;
+    transform: translateY(-50%); /* Menjaga gambar sejajar vertikal */
+}
+
+/* Styling untuk gambar bukti media berbentuk bulat */
+.bukti-media-img {
+    width: 50px;  /* Sesuaikan ukuran gambar */
+    height: 50px;
+    object-fit: cover;
+    border-radius: 50%; /* Membuat gambar menjadi bulat */
+    border: 2px solid #ccc; /* Border tipis pada gambar */
+}
+
+/* Styling tombol delete */
+.delete-btn {
+    background: none;
+    border: none;
+    font-size: 18px;
+    color: #e74c3c;
+    cursor: pointer;
+    align-self: flex-end;
+    margin-top: 10px;
+}
+
+.delete-btn:hover {
+    color: #c0392b;
+}
+
+/* Styling untuk item histori */
+.history-container {
+    margin-top: 20px;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); /* Grid responsif */
+    gap: 20px; /* Jarak antar item */
+}
+
+.history-item {
+    background-color: #fff;
+    border-radius: 8px;
+    padding: 20px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 100%; /* Pastikan semua card memiliki tinggi yang sama */
+}
+
+.history-item .date {
+    font-weight: bold;
+    margin-bottom: 10px;
+    color: #666;
+}
+
+.history-item h3 {
+    font-size: 18px;
+    font-weight: bold;
+    margin-bottom: 10px;
+    color: #333;
+}
+
+.history-item p {
+    font-size: 14px;
+    line-height: 1.6;
+    color: #555;
+    flex-grow: 1; /* Memastikan paragraf memenuhi ruang vertikal */
+}
+
+/* Styling khusus untuk catatan */
+.highlight-note {
+    background-color: #fdf6e4; /* Latar belakang kuning lembut */
+    border-left: 4px solid #f39c12; /* Garis tepi warna kuning */
+    padding: 10px;
+    font-style: italic;
+    margin-top: 10px;
+    color: #333; /* Warna teks */
+    font-size: 14px;
+    border-radius: 4px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Efek bayangan */
+}
+
+/* Tombol delete */
+.delete-btn {
+    background: none;
+    border: none;
+    font-size: 18px;
+    color: #e74c3c;
+    cursor: pointer;
+    align-self: flex-end;
+    margin-top: 10px;
+}
+
+.delete-btn:hover {
+    color: #c0392b;
+}
+
+/* Tombol Unduh */
+.download-button-container {
+    text-align: right; /* Posisikan di kanan */
+    margin-top: 20px; /* Jarak dari kontainer di atasnya */
+}
+
+.download-button-container .btn-download {
+    display: inline-block;
+    background-color: #4CAF50;
+    color: white;
+    font-size: 16px;
+    padding: 10px 20px;
+    text-decoration: none;
+    border-radius: 5px;
+    font-weight: bold;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.download-button-container .btn-download:hover {
+    background-color: #45a049;
+    transform: scale(1.05);
+    text-decoration: none;
+    color: white;
+}

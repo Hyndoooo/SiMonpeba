@@ -1,0 +1,110 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f7f9;
+}
+
+.outer-container {
+    margin-top: 30px;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    min-height: 70vh;
+    flex-direction: column;
+}
+
+/* Container untuk konten utama */
+.container {
+    background-color: #ffffff;
+    border-radius: 10px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    padding: 30px;
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    flex: 1;
+}
+
+/* Styling untuk header */
+header {
+    background-color: #1AABA5;
+    padding: 20px;
+    color: white;
+    border-radius: 10px 10px 0 0;
+}
+
+header h2 {
+    font-size: 24px;
+    font-weight: bold;
+}
+
+/* Desain wrapper media */
+.media-wrapper {
+    width: 80%;
+    margin: 30px auto 0 auto;
+    background-color: #f5f5f5;
+    border: 2px solid #ddd;
+    padding: 120px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+}
+
+/* Gambar dengan responsif */
+.image-container {
+    text-align: center;
+    overflow: hidden;
+}
+
+.img-fluid {
+    max-width: 100%;
+    height: auto;
+    border-radius: 8px;
+}
+
+/* Styling untuk tombol */
+.buttons-container {
+    display: flex;
+    justify-content: space-between; /* Membuat tombol berada di kiri dan kanan */
+    margin-top: 30px;
+    width: 80%; /* Menyesuaikan lebar tombol dengan lebar media-wrapper */
+    margin: 0 auto; /* Menjaga tombol tetap di tengah */
+}
+
+/* Styling untuk tombol */
+.btn {
+    margin: 10px;
+    padding: 12px 25px;
+    border-radius: 5px;
+    text-decoration: none;
+    color: white;
+    font-weight: bold;
+    transition: background-color 0.3s ease;
+}
+
+/* Styling untuk tombol Unduh */
+.btn-primary {
+    background-color: #1AABA5;
+}
+
+.btn-primary:hover {
+    background-color: #0d807d;
+}
+
+/* Styling untuk tombol Kembali */
+.btn-secondary {
+    background-color: #6c757d;
+}
+
+.btn-secondary:hover {
+    background-color: #5a6268;
+}
+
+/* Responsiveness untuk perangkat mobile */
+@media (max-width: 768px) {
+    .media-wrapper {
+        width: 90%;
+    }
+
+    header h2 {
+        font-size: 22px;
+    }
+}
