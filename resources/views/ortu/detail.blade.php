@@ -33,7 +33,7 @@
 <div class="outer-container">
     <div class="container card shadow-sm p-4">
         <div class="row">
-            <!-- Bukti media -->
+            <!-- Bukti Media -->
             <div class="col-md-3 text-left">
                 <label class="form-label fw-bold">Bukti Media</label>
                 <div class="d-flex justify-content-start align-items-center">
@@ -41,9 +41,9 @@
                         <div class="foto-profil-container">
                             <a href="{{ route('bukti.media', ['nis' => $siswa->nis]) }}" class="btn btn-primary">
                                 <i class="fas fa-file-image"></i> Lihat Bukti Media
-                            </a>                            
+                            </a>
                         </div>
-                    </div>                    
+                    </div>
                 </div>
                 <br>
             </div>
@@ -54,7 +54,11 @@
                 <div class="row mb-3">
                     <label for="waktu" class="col-md-4 col-form-label">Waktu</label>
                     <div class="col-md-8">
-                        <input type="text" id="waktu" class="form-control" value="{{ $perkembangan->waktu }}" readonly>
+                        @if(optional($perkembangan)->waktu)
+                            <input type="text" id="waktu" class="form-control" value="{{ $perkembangan->waktu }}" readonly>
+                        @else
+                            <input type="text" id="waktu" class="form-control" value="" readonly>
+                        @endif
                     </div>
                 </div>
 
@@ -78,7 +82,11 @@
                 <div class="row mb-3">
                     <label for="jadwal_pelajaran" class="col-md-4 col-form-label">Jadwal Pelajaran</label>
                     <div class="col-md-8">
-                        <input type="text" id="jadwal_pelajaran" class="form-control" value="{{ $perkembangan->jadwal_pelajaran }}" readonly>
+                        @if(optional($perkembangan)->jadwal_pelajaran)
+                            <input type="text" id="jadwal_pelajaran" class="form-control" value="{{ $perkembangan->jadwal_pelajaran }}" readonly>
+                        @else
+                            <input type="text" id="jadwal_pelajaran" class="form-control" value="" readonly>
+                        @endif
                     </div>
                 </div>
 
@@ -86,7 +94,11 @@
                 <div class="row mb-3">
                     <label for="penjelasan_perkembangan" class="col-md-4 col-form-label">Detail Perkembangan</label>
                     <div class="col-md-8">
-                        <textarea id="penjelasan_perkembangan" class="form-control" rows="3" readonly>{{ $perkembangan->penjelasan_perkembangan }}</textarea>
+                        @if(optional($perkembangan)->penjelasan_perkembangan)
+                            <textarea id="penjelasan_perkembangan" class="form-control" rows="3" readonly>{{ $perkembangan->penjelasan_perkembangan }}</textarea>
+                        @else
+                            <textarea id="penjelasan_perkembangan" class="form-control" rows="3" readonly></textarea>
+                        @endif
                     </div>
                 </div>
 
@@ -94,9 +106,13 @@
                 <div class="row mb-3">
                     <label for="catatan" class="col-md-4 col-form-label">Catatan Perkembangan</label>
                     <div class="col-md-8">
-                        <input type="text" id="catatan" class="form-control" value="{{ $perkembangan->catatan }}" readonly>
+                        @if(optional($perkembangan)->catatan)
+                            <input type="text" id="catatan" class="form-control" value="{{ $perkembangan->catatan }}" readonly>
+                        @else
+                            <input type="text" id="catatan" class="form-control" value="" readonly>
+                        @endif
                     </div>
-                </div>                
+                </div>               
             </div>
         </div>
     </div>

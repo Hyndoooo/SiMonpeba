@@ -26,48 +26,39 @@
 
 <div class="outer-container">
     <div class="container card shadow-sm p-4">
-        <div class="row">
-            <!-- Foto Profil -->
-            <div class="col-md-3 text-left">
-                <label class="form-label fw-bold">Foto Profil</label>
-                <div class="d-flex justify-content-start align-items-center">
-                    <!-- Border Foto Profil -->
-                    <div class="foto-profil-wrapper">
-                        <div class="foto-profil-container">
-                            <!-- Ganti src agar mendukung preview dari server -->
-                            <img id="previewFoto" 
-                                src="{{ old('foto') ? asset('uploads/foto_siswa/' . old('foto')) : asset('images/tambah_foto.png') }}" 
-                                alt="Foto Profil" 
-                                onclick="document.getElementById('foto').click();">
-                            <i id="iconUpload" class="fas fa-upload"></i>
+        <form action="{{ route('data_siswa.update', $siswa->nis) }}" method="POST" enctype="multipart/form-data">
+            @csrf
+            @method('PUT')
+            <div class="row">
+                <!-- Foto Profil -->
+                <div class="col-md-3 text-left">
+                    <label class="form-label fw-bold">Foto Profil</label>
+                    <div class="d-flex justify-content-start align-items-center">
+                        <div class="foto-profil-wrapper">
+                            <div class="foto-profil-container">
+                                <img id="previewFoto" 
+                                    src="{{ $siswa->foto_profil ? asset('storage/' . $siswa->foto_profil) : asset('images/default-avatar.jpg') }}" 
+                                    alt="Foto Profil" 
+                                    onclick="document.getElementById('foto').click();">
+                                <i id="iconUpload" class="fas fa-upload"></i>
+                            </div>
                         </div>
-                    </div>                    
-                    <input type="file" id="foto" name="foto" style="display:none" accept="image/*" onchange="previewFoto(this)">
+                        <input type="file" id="foto" name="foto" style="display:none" accept="image/*" onchange="previewFoto(this)">
+                    </div>
                 </div>
-                <br>
-            </div>
 
-            <!-- Form Input -->
-            <div class="col-md-9">
-                <form action="{{ route('data_siswa.store') }}" method="POST" enctype="multipart/form-data">
-                    @csrf
+                <!-- Form Input -->
+                <div class="col-md-9">
                     <div class="row mb-3">
                         <label for="nis" class="col-md-4 col-form-label">Nomor Induk Siswa</label>
                         <div class="col-md-8">
-                            <!-- Gunakan value dari data siswa yang dikirimkan -->
-                            <input type="text" id="nis" name="nis" 
-                                class="form-control @error('nis') is-invalid @enderror" 
-                                value="{{ old('nis', $siswa->nis) }}" required>
-                            @error('nis')
-                            <div class="invalid-feedback">{{ $message }}</div>
-                            @enderror
+                            <input type="text" id="nis" name="nis" class="form-control" value="{{ $siswa->nis }}" readonly>
                         </div>
                     </div>
                     <div class="row mb-3">
                         <label for="nama" class="col-md-4 col-form-label">Nama Siswa</label>
                         <div class="col-md-8">
-                            <input type="text" id="nama" name="nama" 
-                                class="form-control @error('nama') is-invalid @enderror" 
+                            <input type="text" id="nama" name="nama" class="form-control @error('nama') is-invalid @enderror" 
                                 value="{{ old('nama', $siswa->nama) }}" required>
                             @error('nama')
                             <div class="invalid-feedback">{{ $message }}</div>
@@ -77,8 +68,7 @@
                     <div class="row mb-3">
                         <label for="ttl" class="col-md-4 col-form-label">Tempat, Tanggal Lahir</label>
                         <div class="col-md-8">
-                            <input type="date" id="ttl" name="ttl" 
-                                class="form-control @error('ttl') is-invalid @enderror" 
+                            <input type="date" id="ttl" name="ttl" class="form-control @error('ttl') is-invalid @enderror" 
                                 value="{{ old('ttl', $siswa->ttl) }}" required>
                             @error('ttl')
                             <div class="invalid-feedback">{{ $message }}</div>
@@ -88,15 +78,11 @@
                     <div class="row mb-3">
                         <label for="agama" class="col-md-4 col-form-label">Agama</label>
                         <div class="col-md-8">
-                            <select id="agama" name="agama" 
-                                    class="form-select @error('agama') is-invalid @enderror" required>
-                                <option value="" selected>Pilih Agama</option>
-                                <option value="Islam" {{ old('agama', $siswa->agama) == 'Islam' ? 'selected' : '' }}>Islam</option>
-                                <option value="Kristen" {{ old('agama', $siswa->agama) == 'Kristen' ? 'selected' : '' }}>Kristen</option>
-                                <option value="Katolik" {{ old('agama', $siswa->agama) == 'Katolik' ? 'selected' : '' }}>Katolik</option>
-                                <option value="Hindu" {{ old('agama', $siswa->agama) == 'Hindu' ? 'selected' : '' }}>Hindu</option>
-                                <option value="Buddha" {{ old('agama', $siswa->agama) == 'Buddha' ? 'selected' : '' }}>Buddha</option>
-                                <option value="Konghucu" {{ old('agama', $siswa->agama) == 'Konghucu' ? 'selected' : '' }}>Konghucu</option>
+                            <select id="agama" name="agama" class="form-select @error('agama') is-invalid @enderror" required>
+                                <option value="" selected disabled>Pilih Agama</option>
+                                @foreach(['Islam', 'Kristen', 'Katolik', 'Hindu', 'Buddha', 'Konghucu'] as $agama)
+                                <option value="{{ $agama }}" {{ old('agama', $siswa->agama) == $agama ? 'selected' : '' }}>{{ $agama }}</option>
+                                @endforeach
                             </select>
                             @error('agama')
                             <div class="invalid-feedback">{{ $message }}</div>
@@ -106,9 +92,7 @@
                     <div class="row mb-3">
                         <label for="alamat" class="col-md-4 col-form-label">Alamat</label>
                         <div class="col-md-8">
-                            <textarea id="alamat" name="alamat" 
-                                    class="form-control @error('alamat') is-invalid @enderror" 
-                                    rows="3" required>{{ old('alamat', $siswa->alamat) }}</textarea>
+                            <textarea id="alamat" name="alamat" class="form-control @error('alamat') is-invalid @enderror" rows="3" required>{{ old('alamat', $siswa->alamat) }}</textarea>
                             @error('alamat')
                             <div class="invalid-feedback">{{ $message }}</div>
                             @enderror
@@ -126,40 +110,45 @@
                         </div>
                     </div>
                     <div class="row mb-3">
-                        <label for="no_telepon" class="col-md-4 col-form-label">No Telepon</label>
+                        <label for="no_telepon" class="col-md-4 col-form-label">Nomor Telepon</label>
                         <div class="col-md-8">
                             <input type="text" id="no_telepon" name="no_telepon" 
                                 class="form-control @error('no_telepon') is-invalid @enderror" 
-                                value="{{ old('no_telepon', $siswa->no_telepon) }}" 
-                                placeholder="Masukkan nomor telepon" required>
+                                value="{{ old('no_telepon', $siswa->no_telepon) }}" required>
                             @error('no_telepon')
                             <div class="invalid-feedback">{{ $message }}</div>
                             @enderror
                         </div>
-                    </div>                                 
-                    <!-- Kolom lainnya bisa disesuaikan -->
-                    <div class="d-flex justify-content-end">
-                        <button type="submit" class="btn btn-success px-5">Simpan</button>
                     </div>
-                </form>
+
+                    <div class="d-flex justify-content-end">
+                        <form action="{{ route('data_siswa.update', $siswa->nis) }}" method="POST" enctype="multipart/form-data">
+                            @csrf
+                            @method('PUT')
+                            <!-- Input fields -->
+                            <button type="submit" class="btn btn-success">Simpan</button>
+                        </form>
+                        
+                    </div>
+                </div>
             </div>
-        </div>
+        </form>
     </div>
 </div>
 @endsection
 
 <script>
     function previewFoto(input) {
-        const preview = document.getElementById('previewFoto');
-        const icon = document.getElementById('iconUpload');
-        if (input.files && input.files[0]) {
-            const reader = new FileReader();
-            reader.onload = function (e) {
-                preview.src = e.target.result;
-                preview.style.display = 'block';
-                icon.style.display = 'none';
-            };
-            reader.readAsDataURL(input.files[0]);
+    const preview = document.getElementById('previewFoto');
+    const icon = document.getElementById('iconUpload');
+    if (input.files && input.files[0]) {
+        const reader = new FileReader();
+        reader.onload = function (e) {
+            preview.src = e.target.result;
+            preview.style.display = 'block';
+            icon.style.display = 'none';
+        };
+        reader.readAsDataURL(input.files[0]);
         }
     }
 </script>

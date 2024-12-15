@@ -50,6 +50,7 @@
                                 alt="Foto Profil" 
                                 onclick="document.getElementById('foto_profil').click();">
                             <i id="iconUpload" class="fas fa-upload"></i>
+                            <form action="{{ route('data_siswa.store') }}" method="POST" enctype="multipart/form-data">
                         </div>
                     </div>                    
                     <input type="file" id="foto_profil" name="foto_profil" style="display:none" accept="image/*" onchange="previewFoto(this)">
@@ -59,7 +60,6 @@
 
             <!-- Form Input -->
             <div class="col-md-9">
-                <form action="{{ route('data_siswa.store') }}" method="POST" enctype="multipart/form-data">
                     @csrf
                     <div class="row mb-3">
                         <label for="nis" class="col-md-4 col-form-label">Nomor Induk Siswa</label>

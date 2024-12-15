@@ -86,6 +86,14 @@ header h2 {
     transition: left 0.3s ease, width 0.3s ease;
 }
 
+.main-container {
+    background-color: #fff; /* Warna putih */
+    padding: 20px; /* Jarak dalam */
+    margin: 20px auto; /* Jarak luar (untuk center) */
+    border-radius: 10px; /* Sudut membulat */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Efek bayangan */
+}
+
 /* Wrapper untuk header dan pencarian */
 .header-wrapper {
     display: flex;

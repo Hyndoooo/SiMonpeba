@@ -105,7 +105,7 @@
                             <select id="jadwal_pelajaran" name="jadwal_pelajaran" class="form-select" required>
                                 <option value="" selected>Pilih Jadwal Pelajaran</option>
                                 <option value="Pengembangan Jati Diri">Pengembangan Jati Diri</option>
-                                <option value="Nilai Agama">Nilai Agama</option>
+                                <option value="Nilai Agama">Agama</option>
                                 <option value="Budipekerti">Budipekerti</option>
                                 <option value="Literasi">Literasi</option>
                             </select>

@@ -34,8 +34,7 @@
                     <div class="foto-profil-wrapper">
                         <div class="foto-profil-container">
                             <img id="previewFoto" 
-                                src="{{ $siswa->foto ? asset('uploads/foto_siswa/' . $siswa->foto) : asset('images/tambah_foto.png') }}" 
-                                alt="Foto Profil">
+                            src="{{ $siswa->foto_profil ? asset('storage/' . $siswa->foto_profil) : asset('images/default-avatar.jpg') }}" alt="Foto Siswa">
                         </div>
                     </div>
                 </div>

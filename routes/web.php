@@ -49,7 +49,8 @@ Route::middleware(['auth', 'verified'])->group(function () {
     // Grup middleware untuk role guru
     Route::middleware('role:guru')->group(function () {
         Route::get('/guru/dashboard', [GuruDashboardController::class, 'index'])->name('guru.dashboard');
-        Route::get('/data_siswa/detail/{nis}', [DetailDataSiswaController::class, 'index'])->name('data_siswa.detail');
+        Route::get('/data-siswa/{nis}', [DetailDataSiswaController::class, 'show'])->name('data_siswa.detail');
+        Route::put('/data-siswa/{nis}', [DetailDataSiswaController::class, 'update'])->name('data_siswa.update');
         
         // Perkembangan siswa routes
         Route::get('/perkembangan-siswa/guru', [PerkembanganSiswaController::class, 'index'])->name('perkembangan-siswa');
@@ -69,7 +70,7 @@ Route::middleware(['auth', 'verified'])->group(function () {
         Route::get('/ortu/dashboard', [OrtuDashboardController::class, 'index'])->name('ortu.dashboard');
         Route::get('/ortu/detail/{nis}', [DetailPerkembanganSiswaOrtuController::class, 'index'])->name('ortu.detail');
         Route::get('/ortu/{nis}/histori', [HistoriOrtuController::class, 'index'])->name('histori.ortu');
-        Route::get('/ortu/download/{nis}', [DownloadControllerOrtu::class, 'downloadPDF'])->name('histori.download');
+        Route::get('/ortu/download/{nis}', [DownloadControllerOrtu::class, 'downloadPDF'])->name('histori.ortu.download');
 
         //Bukti Media
         Route::get('/ortu/{nis}/bukti-media', [BuktiMediaController::class, 'show'])->name('bukti.media');

@@ -35,12 +35,13 @@
                 <p>Belum ada histori perkembangan untuk siswa ini.</p>
             @endforelse
         </div>
-
+        
+        <!-- Tombol Unduh -->
         <div class="download-button-container">
-            <a href="{{ route('histori.download', ['nis' => $siswa->nis]) }}" class="btn-download">
+            <a href="{{ route('histori.ortu.download', ['nis' => $siswa->nis]) }}" class="btn-download">
                 <i class="fas fa-download"></i> Unduh PDF
             </a>
-        </div>                
+        </div>                     
     </div>
 </div>
 @endsection

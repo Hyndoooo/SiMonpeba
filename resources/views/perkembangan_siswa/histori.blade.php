@@ -47,7 +47,7 @@
             <a href="{{ route('histori.download', ['nis' => $siswa->nis]) }}" class="btn-download">
                 <i class="fas fa-download"></i> Unduh PDF
             </a>
-        </div>        
+        </div>  
     </div>
 </div>
 @endsection
