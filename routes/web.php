@@ -32,6 +32,11 @@ Route::get('/login', function () {
     return view('auth.login');
 })->name('login');
 
+// Data Siswa routes
+Route::resource('data_siswa', DataSiswaController::class)->only([
+    'create', 'store', 'edit', 'update',
+]);
+
 // =======================
 // LOGIN DAN LOGOUT MULTIUSER
 // =======================
@@ -47,11 +52,6 @@ Route::middleware(['auth', 'verified'])->group(function () {
         Route::get('/guru/dashboard', [GuruDashboardController::class, 'index'])->name('guru.dashboard');
         Route::get('/data-siswa/{nis}', [DetailDataSiswaController::class, 'show'])->name('data_siswa.detail');
         Route::put('/data-siswa/{nis}', [DetailDataSiswaController::class, 'update'])->name('data_siswa.update');
-        
-        // Data Siswa routes
-        Route::resource('data_siswa', DataSiswaController::class)->only([
-            'create', 'store', 'edit', 'update',
-        ]);
 
         // Perkembangan siswa routes
         Route::get('/perkembangan-siswa/guru', [PerkembanganSiswaController::class, 'index'])->name('perkembangan-siswa');
