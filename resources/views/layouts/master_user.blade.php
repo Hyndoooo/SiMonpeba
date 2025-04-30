@@ -185,15 +185,15 @@
             </div>
         </div>
         <div class="profile-header">
-            <img src="{{ asset('images/aldo.jpg') }}" alt="Profile Picture">
+            <img src="{{ $siswa->foto_profil ? asset('storage/' . $siswa->foto_profil) : asset('images/default-avatar.jpg') }}"  alt="Profile Picture">
         </div>
     </header>
 
     <div class="sidebar" id="sidebar">
         <div class="profile">
-            <img src="{{ asset('images/aldo.jpg') }}" alt="Profile Picture">
-            <h2>Muhammad Aldo</h2>
-            <p>2305044</p>
+            <img src="{{ $siswa->foto_profil ? asset('storage/' . $siswa->foto_profil) : asset('images/default-avatar.jpg') }}"  alt="Profile Picture">
+            <h2 style="text-align: center;">{{ Auth::user()->dataSiswa ? Auth::user()->dataSiswa->nama : 'Nama tidak tersedia' }}</h2>
+            <p>{{ Auth::user()->dataSiswa ? Auth::user()->dataSiswa->nis : 'NIS tidak tersedia' }}</p>
         </div>
         <!-- Dashboard Button -->
         <a href="{{ route('ortu.dashboard') }}">

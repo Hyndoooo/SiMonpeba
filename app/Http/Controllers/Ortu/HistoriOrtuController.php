@@ -1,10 +1,11 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Ortu;
 
 use App\Models\PerkembanganSiswa;
 use App\Models\DataSiswa;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
 
 class HistoriOrtuController extends Controller
 {

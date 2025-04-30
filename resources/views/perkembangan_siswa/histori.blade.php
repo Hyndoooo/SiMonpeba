@@ -24,11 +24,11 @@
                         <p class="highlight-note"><strong>Catatan:</strong> {{ $item->catatan }}</p>
                     </div>
                     <!-- Gambar bukti media (bulat) di sebelah kanan -->
-                    @if($item->bukti_media)
+                    {{-- @if($item->bukti_media)
                         <div class="bukti-media">
                             <img src="{{ asset('storage/' . $item->bukti_media) }}" alt="Bukti Media" class="bukti-media-img">
                         </div>
-                    @endif
+                    @endif --}}
                     <!-- Tombol Hapus -->
                     <form action="{{ route('perkembangan_siswa.destroy', $item->id_perkembangan) }}" method="POST" onsubmit="return confirm('Yakin ingin menghapus data ini?');" style="display: inline;">
                         @csrf

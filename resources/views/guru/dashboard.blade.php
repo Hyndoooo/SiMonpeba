@@ -46,6 +46,7 @@
                 <div class="card-info">
                     <h3>{{ $siswa->nama }}</h3>
                     <p>NIS: {{ $siswa->nis }}</p>
+                    <p>Kelas: {{ $siswa->kelas }}</p>
                 </div>
             </div>
             <!-- Tombol Selengkapnya yang mengarah ke halaman detail siswa -->

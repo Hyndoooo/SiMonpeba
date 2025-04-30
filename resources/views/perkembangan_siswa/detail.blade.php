@@ -13,7 +13,7 @@
             <i class="fas fa-history"></i> HISTORI
         </button>
         <!-- Button PESAN -->
-        <button class="btn-icon" onclick="goToMessage()">
+        <button class="btn-icon" onclick="location.href='{{ route('pesan.index', ['nis' => $siswa->nis]) }}'">
             <i class="fas fa-envelope"></i> PESAN
         </button>
     </div>
@@ -48,17 +48,20 @@
 <div class="outer-container">
     <div class="container card shadow-sm p-4">
         <div class="row">
-            <!-- Bukti media -->
+            <!-- Bukti Media -->
             <div class="col-md-3 text-left">
                 <label class="form-label fw-bold">Bukti Media</label>
                 <div class="d-flex justify-content-start align-items-center">
+                    <!-- Border Bukti Media -->
                     <div class="foto-profil-wrapper">
                         <div class="foto-profil-container">
+                            <!-- Ganti src agar mendukung preview dari server -->
                             <img id="previewFoto" 
-                                src="{{ asset('images/tambah_foto.png') }}" 
+                                src="{{ old('bukti_media') ? asset('uploads/bukti_media/' . old('bukti_media')) : asset('images/tambah_foto.png') }}" 
                                 alt="Bukti Media" 
                                 onclick="document.getElementById('bukti_media').click();">
                             <i id="iconUpload" class="fas fa-upload"></i>
+                            <form action="{{ route('perkembangan_siswa.store') }}" method="POST" enctype="multipart/form-data">
                         </div>
                     </div>                    
                     <input type="file" id="bukti_media" name="bukti_media" style="display:none" accept="image/*" onchange="previewFoto(this)">
@@ -68,7 +71,6 @@
 
             <!-- Form Input -->
             <div class="col-md-9">
-                <form action="{{ route('perkembangan_siswa.store') }}" method="POST" enctype="multipart/form-data">
                     @csrf
                     <!-- Waktu -->
                     <div class="row mb-3">
@@ -98,6 +100,14 @@
                         </div>
                     </div>
 
+                    <!-- Kelas -->
+                    <div class="row mb-3">
+                        <label for="kelas" class="col-md-4 col-form-label">Kelas</label>
+                        <div class="col-md-8">
+                            <input type="text" id="kelas" class="form-control" value="{{ $siswa->kelas }}" readonly>
+                        </div>
+                    </div>
+
                     <!-- Jadwal Pelajaran -->
                     <div class="row mb-3">
                         <label for="jadwal_pelajaran" class="col-md-4 col-form-label">Jadwal Pelajaran</label>
@@ -105,7 +115,7 @@
                             <select id="jadwal_pelajaran" name="jadwal_pelajaran" class="form-select" required>
                                 <option value="" selected>Pilih Jadwal Pelajaran</option>
                                 <option value="Pengembangan Jati Diri">Pengembangan Jati Diri</option>
-                                <option value="Nilai Agama">Agama</option>
+                                <option value="Agama">Agama</option>
                                 <option value="Budipekerti">Budipekerti</option>
                                 <option value="Literasi">Literasi</option>
                             </select>
@@ -153,14 +163,5 @@
             };
             reader.readAsDataURL(input.files[0]);
         }
-    }
-
-    function goToHistory() {
-        window.location.href = '/path/to/history';
-    }
-
-    function goToMessage() {
-        // Mengarahkan pengguna ke halaman pesan
-        location.href = "{{ route('pesan.index') }}";
     }
 </script>

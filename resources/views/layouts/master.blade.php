@@ -185,15 +185,21 @@
             </div>
         </div>
         <div class="profile-header">
-            <img src="{{ asset('images/aldo.jpg') }}" alt="Profile Picture">
-        </div>
+            <img src="{{ Auth::user()->guru && Auth::user()->guru->foto_profil 
+                        ? asset('storage/' . Auth::user()->guru->foto_profil) 
+                        : asset('images/default-avatar.jpg') }}" 
+                alt="Profile Picture">
+        </div>        
     </header>
 
     <div class="sidebar" id="sidebar">
         <div class="profile">
-            <img src="{{ asset('images/aldo.jpg') }}" alt="Profile Picture">
-            <h2>Muhammad Aldo</h2>
-            <p>2305044</p>
+            <img src="{{ Auth::user()->guru && Auth::user()->guru->foto_profil 
+                        ? asset('storage/' . Auth::user()->guru->foto_profil) 
+                        : asset('images/default-avatar.jpg') }}" 
+                alt="Profile Picture">
+            <h2 style="text-align: center;">{{ Auth::user()->guru ? Auth::user()->guru->nama : 'Nama tidak tersedia' }}</h2>
+            <p>{{ Auth::user()->guru ? Auth::user()->guru->nip : 'NIP tidak tersedia' }}</p>
         </div>
         <!-- Dashboard Button -->
         <a href="{{ route('guru.dashboard') }}">

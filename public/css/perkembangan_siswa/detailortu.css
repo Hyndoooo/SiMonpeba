@@ -258,6 +258,15 @@ button[type="submit"]:hover, .btn-save:hover {
     text-align: right;
 }
 
+.alert-danger {
+    background-color: #f8d7da;
+    color: #842029;
+    border: 1px solid #f5c2c7;
+    border-radius: 5px;
+    padding: 10px;
+    margin-bottom: 15px;
+}
+
 @media (max-width: 768px) {
     .profile-container {
         flex-direction: column;

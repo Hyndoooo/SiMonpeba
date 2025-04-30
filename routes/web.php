@@ -1,57 +1,58 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\ProfileController;
-use App\Http\Controllers\GuruDashboardController;
-use App\Http\Controllers\OrtuDashboardController;
-use App\Http\Controllers\DataSiswaController;
 use App\Http\Controllers\Auth\AuthenticatedSessionController;
-use App\Http\Controllers\BuktiMediaController;
-use App\Http\Controllers\DetailDataSiswaController;
-use App\Http\Controllers\DetailPerkembanganSiswaController;
-use App\Http\Controllers\DetailPerkembanganSiswaOrtuController;
-use App\Http\Controllers\DownloadController;
-use App\Http\Controllers\DownloadControllerOrtu;
-use App\Http\Controllers\PerkembanganSiswaController;
-use App\Http\Controllers\HistoriController;
-use App\Http\Controllers\HistoriOrtuController;
 
-// Halaman utama
+// Guru Controller
+use App\Http\Controllers\Guru\DataSiswaController;
+use App\Http\Controllers\Guru\DetailDataSiswaController;
+use App\Http\Controllers\Guru\DetailPerkembanganSiswaController;
+use App\Http\Controllers\Guru\DownloadController;
+use App\Http\Controllers\Guru\GuruDashboardController;
+use App\Http\Controllers\Guru\HistoriController;
+use App\Http\Controllers\Guru\PerkembanganSiswaController;
+use App\Http\Controllers\Guru\PesanController;
+
+// Ortu Controller
+use App\Http\Controllers\Ortu\BuktiMediaController;
+use App\Http\Controllers\Ortu\DetailPerkembanganSiswaOrtuController;
+use App\Http\Controllers\Ortu\DownloadControllerOrtu;
+use App\Http\Controllers\Ortu\HistoriOrtuController;
+use App\Http\Controllers\Ortu\OrtuDashboardController;
+use App\Http\Controllers\Ortu\PesanOrtuController;
+
+
+// Redirect ke login
 Route::get('/', function () {
     return redirect()->route('login');
 });
 
-// Halaman login
+// Alias bawaan Laravel agar tidak error Route [login] not defined
 Route::get('/login', function () {
     return view('auth.login');
 })->name('login');
 
+// =======================
+// LOGIN DAN LOGOUT MULTIUSER
+// =======================
 Route::post('login', [AuthenticatedSessionController::class, 'store']);
 Route::post('logout', [AuthenticatedSessionController::class, 'destroy'])->name('logout');
 
-// Grup middleware untuk autentikasi
-Route::middleware(['auth'])->group(function () {
-
-    // Profile routes
-    Route::get('/profile/edit', [ProfileController::class, 'edit'])->name('profile.edit');
-    Route::post('/profile/update', [ProfileController::class, 'update'])->name('profile.update');
-    Route::delete('/profile/destroy', [ProfileController::class, 'destroy'])->name('profile.destroy');
-
-    // Data Siswa routes
-    Route::resource('data_siswa', DataSiswaController::class)->only([
-        'create', 'store', 'edit', 'update',
-    ]);
-});
-
 // Grup middleware untuk autentikasi dan verifikasi
 Route::middleware(['auth', 'verified'])->group(function () {
-
-    // Grup middleware untuk role guru
+    // =======================
+    // GURU AREA (Hanya setelah autentikasi dan verifikasi login guru)
+    // =======================
     Route::middleware('role:guru')->group(function () {
         Route::get('/guru/dashboard', [GuruDashboardController::class, 'index'])->name('guru.dashboard');
         Route::get('/data-siswa/{nis}', [DetailDataSiswaController::class, 'show'])->name('data_siswa.detail');
         Route::put('/data-siswa/{nis}', [DetailDataSiswaController::class, 'update'])->name('data_siswa.update');
         
+        // Data Siswa routes
+        Route::resource('data_siswa', DataSiswaController::class)->only([
+            'create', 'store', 'edit', 'update',
+        ]);
+
         // Perkembangan siswa routes
         Route::get('/perkembangan-siswa/guru', [PerkembanganSiswaController::class, 'index'])->name('perkembangan-siswa');
         Route::get('/perkembangan_siswa/detail/{nis}', [DetailPerkembanganSiswaController::class, 'index'])->name('perkembangan_siswa.detail');
@@ -62,9 +63,17 @@ Route::middleware(['auth', 'verified'])->group(function () {
         Route::delete('/perkembangan_siswa/{id_perkembangan}', [HistoriController::class, 'destroy'])->name('perkembangan_siswa.destroy');
         Route::get('/histori/download/{nis}', [DownloadController::class, 'downloadPDF'])->name('histori.download');
 
+        // Pesan
+        Route::get('pesan/{nis}', [PesanController::class, 'index'])->name('pesan.index');
+        Route::post('pesan/{nis}/store', [PesanController::class, 'store'])->name('pesan.store');
+        Route::delete('/pesan/{id_pesan}', [PesanController::class, 'destroy'])->name('pesan.destroy');
+        Route::put('/pesan/{id_pesan}', [PesanController::class, 'update'])->name('pesan.update');
+
     });
 
-    // Grup middleware untuk role ortu
+    // =======================
+    // ORTU AREA (Hanya setelah autentikasi dan verifikasi login ortu)
+    // =======================
     Route::middleware('role:ortu')->group(function () {
         Route::post('logout', [AuthenticatedSessionController::class, 'destroy'])->name('logout');
         Route::get('/ortu/dashboard', [OrtuDashboardController::class, 'index'])->name('ortu.dashboard');
@@ -72,21 +81,14 @@ Route::middleware(['auth', 'verified'])->group(function () {
         Route::get('/ortu/{nis}/histori', [HistoriOrtuController::class, 'index'])->name('histori.ortu');
         Route::get('/ortu/download/{nis}', [DownloadControllerOrtu::class, 'downloadPDF'])->name('histori.ortu.download');
 
-        //Bukti Media
+        // Bukti Media
         Route::get('/ortu/{nis}/bukti-media', [BuktiMediaController::class, 'show'])->name('bukti.media');
         Route::get('/ortu/{nis}/download-bukti', [BuktiMediaController::class, 'download'])->name('ortu.download.bukti');
-    });
-});
 
-use App\Http\Controllers\PesanController;
-
-Route::middleware(['auth'])->group(function () {
-    // Route untuk menampilkan pesan yang dikirim dan diterima
-    Route::get('pesan', [PesanController::class, 'index'])->name('pesan.index');
-    
-    // Route untuk form kirim pesan
-    Route::get('pesan/create/{id_penerima}', [PesanController::class, 'create'])->name('pesan.create');
-    
-    // Route untuk menyimpan pesan
-    Route::post('pesan/store/{id_penerima}', [PesanController::class, 'store'])->name('pesan.store');
+        // Pesan
+        Route::get('pesan', [PesanOrtuController::class, 'index'])->name('ortu.pesan.index');
+        Route::post('pesan/store/{id_penerima}', [PesanOrtuController::class, 'store'])->name('ortu.pesan.store');
+        Route::delete('/ortu/pesan/{id_pesan}', [PesanOrtuController::class, 'destroy'])->name('ortu.pesan.destroy');
+        Route::put('/ortu/pesan/{id_pesan}', [PesanOrtuController::class, 'update'])->name('ortu.pesan.update');
+        });
 });

@@ -23,6 +23,7 @@ class DataSiswa extends Model
         'alamat',
         'orangtua_wali',
         'no_telepon',
+        'kelas',
         'foto_profil',
     ];
 

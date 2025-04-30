@@ -56,7 +56,13 @@
                     </div>
                 </div>
                 <div class="row mb-3">
-                    <label class="col-md-4 col-form-label">Tempat, Tanggal Lahir</label>
+                    <label class="col-md-4 col-form-label">Kelas</label>
+                    <div class="col-md-8">
+                        <input type="text" class="form-control" value="{{ $siswa->kelas }}" readonly>
+                    </div>
+                </div>
+                <div class="row mb-3">
+                    <label class="col-md-4 col-form-label">Tanggal Lahir</label>
                     <div class="col-md-8">
                         <input type="text" class="form-control" value="{{ $siswa->ttl }}" readonly>
                     </div>

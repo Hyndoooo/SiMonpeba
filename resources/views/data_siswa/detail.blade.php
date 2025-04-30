@@ -26,7 +26,6 @@
 
 <div class="outer-container">
     <div class="container card shadow-sm p-4">
-        <form action="{{ route('data_siswa.update', $siswa->nis) }}" method="POST" enctype="multipart/form-data">
             @csrf
             @method('PUT')
             <div class="row">
@@ -39,11 +38,12 @@
                                 <img id="previewFoto" 
                                     src="{{ $siswa->foto_profil ? asset('storage/' . $siswa->foto_profil) : asset('images/default-avatar.jpg') }}" 
                                     alt="Foto Profil" 
-                                    onclick="document.getElementById('foto').click();">
+                                    onclick="document.getElementById('foto_profil').click();">
                                 <i id="iconUpload" class="fas fa-upload"></i>
+                                <form action="{{ route('data_siswa.update', $siswa->nis) }}" method="POST" enctype="multipart/form-data">
                             </div>
                         </div>
-                        <input type="file" id="foto" name="foto" style="display:none" accept="image/*" onchange="previewFoto(this)">
+                        <input type="file" id="foto_profil" name="foto_profil" style="display:none" accept="image/*" onchange="previewFoto(this)">
                     </div>
                 </div>
 
@@ -66,7 +66,18 @@
                         </div>
                     </div>
                     <div class="row mb-3">
-                        <label for="ttl" class="col-md-4 col-form-label">Tempat, Tanggal Lahir</label>
+                        <label for="kelas" class="col-md-4 col-form-label">Kelas</label>
+                        <div class="col-md-8">
+                            <input type="text" id="kelas" name="kelas" 
+                                class="form-control @error('kelas') is-invalid @enderror" 
+                                value="{{ old('kelas', $siswa->kelas) }}" required>
+                            @error('kelas')
+                            <div class="invalid-feedback">{{ $message }}</div>
+                            @enderror
+                        </div>
+                    </div>
+                    <div class="row mb-3">
+                        <label for="ttl" class="col-md-4 col-form-label">Tanggal Lahir</label>
                         <div class="col-md-8">
                             <input type="date" id="ttl" name="ttl" class="form-control @error('ttl') is-invalid @enderror" 
                                 value="{{ old('ttl', $siswa->ttl) }}" required>

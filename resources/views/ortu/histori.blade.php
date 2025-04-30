@@ -24,11 +24,11 @@
                         <p class="highlight-note"><strong>Catatan:</strong> {{ $item->catatan }}</p>
                     </div>
                     <!-- Gambar bukti media (bulat) di sebelah kanan -->
-                    @if($item->bukti_media)
+                    {{-- @if($item->bukti_media)
                         <div class="bukti-media">
                             <img src="{{ asset('storage/' . $item->bukti_media) }}" alt="Bukti Media" class="bukti-media-img">
                         </div>
-                    @endif
+                    @endif --}}
                 </div>
             @empty
                 <!-- Jika tidak ada histori -->

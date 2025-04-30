@@ -19,6 +19,7 @@ return new class extends Migration {
             $table->string('alamat');
             $table->string('orangtua_wali');
             $table->string('no_telepon');
+            $table->string('kelas');
             $table->string('foto_profil')->nullable(); // Kolom untuk foto profil, opsional
             $table->timestamps();
 

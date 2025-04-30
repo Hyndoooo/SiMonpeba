@@ -1,17 +1,18 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Guru;
 
 use Illuminate\Http\Request;
-use App\Models\PerkembanganSiswa;
+use App\Models\PerkembanganSiswa; // Pastikan model sesuai
 use Barryvdh\DomPDF\Facade\Pdf;
+use App\Http\Controllers\Controller;
 
-class DownloadControllerOrtu extends Controller
+class DownloadController extends Controller
 {
     public function downloadPDF($nis)
     {
         // Ambil data histori berdasarkan NIS
-        $histori = PerkembanganSiswa::where('nis', $nis)->orderBy('waktu', 'desc')->get();
+        $histori = PerkembanganSiswa::where('nis', $nis)->get();
 
         // Jika data tidak ditemukan
         if ($histori->isEmpty()) {
@@ -19,10 +20,9 @@ class DownloadControllerOrtu extends Controller
         }
 
         // Kirim data ke view PDF
-        $pdf = Pdf::loadView('ortu.download', compact('histori'));
+        $pdf = Pdf::loadView('perkembangan_siswa.download', compact('histori'));
 
         // Unduh file PDF
         return $pdf->download("Histori_Perkembangan_NIS_{$nis}.pdf");
     }
 }
-

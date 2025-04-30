@@ -53,20 +53,4 @@
             </form>
         </div>
     </div>
-
-    <!-- Tambahan: Form Logout (dapat digunakan di halaman lain seperti dashboard) -->
-    <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-        @csrf
-    </form>
-
-    <!-- Jika sudah login, bisa menampilkan tombol logout -->
-    @auth
-        <div style="text-align: center; margin-top: 20px;">
-            <a href="#" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
-                Logout
-            </a>
-        </div>
-    @endauth
-</body>
-
 </html>

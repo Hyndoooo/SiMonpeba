@@ -1,11 +1,12 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Guru;
 
 use Illuminate\Http\Request;
-use App\Models\DataSiswa; // Import model DataSiswa
+use App\Models\DataSiswa;
+use App\Http\Controllers\Controller;
 
-class PerkembanganSiswaController extends Controller
+class GuruDashboardController extends Controller
 {
     public function index(Request $request)
     {
@@ -19,8 +20,8 @@ class PerkembanganSiswaController extends Controller
             // Jika tidak ada pencarian, ambil semua data siswa dengan pagination
             $dataSiswa = DataSiswa::paginate(8);
         }
-
-        // Kirim data siswa ke view
-        return view('perkembangan_siswa.guru', compact('dataSiswa', 'search'));
+        
+        // Kirim data siswa ke view guru.dashboard
+        return view('guru.dashboard', compact('dataSiswa'));
     }
 }

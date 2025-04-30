@@ -10,7 +10,6 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\View\View;
 use Illuminate\Support\Facades\Hash;
 
-
 class AuthenticatedSessionController extends Controller
 {
     /**

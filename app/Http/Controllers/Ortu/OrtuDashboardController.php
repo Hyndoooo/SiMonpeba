@@ -1,10 +1,11 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Ortu;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Models\DataSiswa;
+use App\Http\Controllers\Controller;
 
 class OrtuDashboardController extends Controller
 {
@@ -15,7 +16,7 @@ class OrtuDashboardController extends Controller
         $siswa = DataSiswa::where('id', $userId)->first();
 
         if (!$siswa) {
-            // Jika data siswa tidak ditemukan, tampilkan pesan atau halaman lain
+            // Ji5ka data siswa tidak ditemukan, tampilkan pesan atau halaman lain
             return redirect()->route('ortu.dashboard')->withErrors('Data siswa tidak ditemukan.');
         }
 

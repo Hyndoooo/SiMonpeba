@@ -11,13 +11,19 @@
         <button class="btn-icon" onclick="location.href='{{ route('histori.ortu', ['nis' => $siswa->nis]) }}'">
             <i class="fas fa-history"></i> HISTORI
         </button>
-        <button class="btn-icon" onclick="goToMessage()">
+        <button class="btn-icon" onclick="location.href='{{ route('ortu.pesan.index') }}'">
             <i class="fas fa-envelope"></i> PESAN
         </button>
     </div>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
     <link rel="stylesheet" href="{{ asset('css/perkembangan_siswa/detailortu.css') }}">
 </header>
+
+@if(session('error'))
+    <div class="alert alert-danger">
+        {{ session('error') }}
+    </div>
+@endif
 
 <div class="tabs">
     <ul>
@@ -78,6 +84,14 @@
                     </div>
                 </div>
 
+                <!-- Kelas -->
+                <div class="row mb-3">
+                    <label for="kelas" class="col-md-4 col-form-label">Kelas</label>
+                    <div class="col-md-8">
+                        <input type="text" id="kelas" class="form-control" value="{{ $siswa->kelas }}" readonly>
+                    </div>
+                </div>
+
                 <!-- Jadwal Pelajaran -->
                 <div class="row mb-3">
                     <label for="jadwal_pelajaran" class="col-md-4 col-form-label">Jadwal Pelajaran</label>
@@ -118,14 +132,3 @@
     </div>
 </div>
 @endsection
-<script>
-
-    function goToHistory() {
-        window.location.href = '/path/to/history';
-    }
-
-    function goToMessage() {
-        // Mengarahkan pengguna ke halaman pesan
-        location.href = "{{ route('pesan.index') }}";
-    }
-</script>

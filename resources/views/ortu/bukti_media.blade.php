@@ -27,7 +27,6 @@
             <a href="{{ route('ortu.detail', ['nis' => $siswa->nis]) }}" class="btn btn-secondary">
                 <i class="fas fa-arrow-left"></i> Kembali
             </a>
-
             <a href="{{ route('ortu.download.bukti', ['nis' => $siswa->nis]) }}" class="btn btn-primary">
                 <i class="fas fa-download"></i> Unduh
             </a>

@@ -1,10 +1,14 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Guru;
 
 use App\Models\PerkembanganSiswa;
 use Illuminate\Http\Request;
 use App\Models\DataSiswa;
+use App\Models\User;
+use App\Mail\PerkembanganSiswaNotification;
+use Illuminate\Support\Facades\Mail;
+use App\Http\Controllers\Controller;
 
 class DetailPerkembanganSiswaController extends Controller
 {
@@ -25,7 +29,7 @@ class DetailPerkembanganSiswaController extends Controller
             'jadwal_pelajaran' => 'required|string',
             'penjelasan_perkembangan' => 'required|string',
             'catatan' => 'nullable|string',
-            'bukti_media' => 'nullable|file|mimes:jpg,png,jpeg|max:2048', // Validasi untuk file media
+            'bukti_media' => 'nullable|file|mimes:jpg,png,jpeg,mp4|max:30720', // Validasi untuk file media
             'waktu' => 'required|date',
         ]);
 
@@ -41,11 +45,31 @@ class DetailPerkembanganSiswaController extends Controller
         // Simpan file media jika ada
         if ($request->hasFile('bukti_media')) {
             // Menyimpan file bukti media ke folder 'bukti_media' dalam storage
-            $validated['bukti_media'] = $request->file('bukti_media')->store('bukti_media', 'public');
+            $validated['bukti_media'] = $request->file('bukti_media')->store('uploads/bukti_media', 'public');
         }
 
         // Simpan data ke tabel perkembangan_siswa
         PerkembanganSiswa::create($validated);
+
+        $orangTua = User::where('role', 'ortu')
+            ->whereHas('dataSiswa', function ($query) use ($siswa) {
+                $query->where('id', $siswa->id);
+            })->first();
+
+        if (!$orangTua) {
+            return back()->with('error', 'Orang tua dari siswa ini tidak ditemukan.');
+        }
+
+        // Kirim email notifikasi
+        $emailData = [
+            'nama' => $siswa->nama,
+            'nis' => $siswa->nis,
+            'jadwal_pelajaran' => $validated['jadwal_pelajaran'],
+            'penjelasan_perkembangan' => $validated['penjelasan_perkembangan'],
+            'catatan' => $validated['catatan'],
+        ];
+
+        Mail::to($orangTua->email)->send(new PerkembanganSiswaNotification($emailData));
 
         // Redirect dengan pesan sukses
         return redirect()->route('perkembangan_siswa.detail', ['nis' => $validated['nis']])

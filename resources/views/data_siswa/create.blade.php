@@ -84,7 +84,18 @@
                         </div>
                     </div>
                     <div class="row mb-3">
-                        <label for="ttl" class="col-md-4 col-form-label">Tempat, Tanggal Lahir</label>
+                        <label for="kelas" class="col-md-4 col-form-label">Kelas</label>
+                        <div class="col-md-8">
+                            <input type="text" id="kelas" name="kelas" 
+                                class="form-control @error('kelas') is-invalid @enderror" 
+                                value="{{ old('kelas') }}" required>
+                            @error('kelas')
+                            <div class="invalid-feedback">{{ $message }}</div>
+                            @enderror
+                        </div>
+                    </div>
+                    <div class="row mb-3">
+                        <label for="ttl" class="col-md-4 col-form-label">Tanggal Lahir</label>
                         <div class="col-md-8">
                             <input type="date" id="ttl" name="ttl" 
                                 class="form-control @error('ttl') is-invalid @enderror" 

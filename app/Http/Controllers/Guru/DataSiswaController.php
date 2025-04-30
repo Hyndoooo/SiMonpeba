@@ -1,12 +1,13 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Guru;
 
 use Illuminate\Http\Request;
 use App\Models\DataSiswa;
 use App\Models\User;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Storage;
+use App\Http\Controllers\Controller;
 
 class DataSiswaController extends Controller
 {
@@ -25,8 +26,9 @@ class DataSiswaController extends Controller
             'alamat' => 'required|string',
             'orangtua_wali' => 'required|string|max:255',
             'no_telepon' => 'required|string|max:15',
+            'kelas' => 'required|string',
             'email' => 'required|email|unique:users,email',
-            'foto_profil' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:5120',
+            'foto_profil' => 'nullable|image|mimes:jpeg,png,jpg|max:5120',
         ]);
 
         $username = preg_replace('/\s+/', '', strtolower($validated['nama'])) . date('dmY', strtotime($validated['ttl']));
@@ -48,6 +50,7 @@ class DataSiswaController extends Controller
             'alamat' => $validated['alamat'],
             'orangtua_wali' => $validated['orangtua_wali'],
             'no_telepon' => $validated['no_telepon'],
+            'kelas' => $validated['kelas'],
             'id' => $user->id,
             'foto_profil' => $fotoProfilPath,
         ]);

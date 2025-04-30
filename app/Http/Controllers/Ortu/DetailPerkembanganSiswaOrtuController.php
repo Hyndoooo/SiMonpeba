@@ -1,9 +1,10 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Ortu;
 
 use App\Models\PerkembanganSiswa;
 use App\Models\DataSiswa;
+use App\Http\Controllers\Controller;
 
 class DetailPerkembanganSiswaOrtuController extends Controller
 {

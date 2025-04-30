@@ -1,11 +1,12 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Guru;
 
 use App\Models\PerkembanganSiswa;
 use Illuminate\Http\Request;
 use App\Models\DataSiswa;
 use Illuminate\Support\Facades\Storage;
+use App\Http\Controllers\Controller;
 
 class HistoriController extends Controller
 {

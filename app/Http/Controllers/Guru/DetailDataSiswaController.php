@@ -1,9 +1,10 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Guru;
 
 use Illuminate\Http\Request;
 use App\Models\DataSiswa;
+use App\Http\Controllers\Controller;
 
 class DetailDataSiswaController extends Controller
 {
@@ -26,15 +27,16 @@ class DetailDataSiswaController extends Controller
             'alamat' => 'required|string|max:255',
             'orangtua_wali' => 'required|string|max:255',
             'no_telepon' => 'required|string|max:15',
-            'foto' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:5120',
+            'kelas' => 'required|string|max:50',
+            'foto' => 'nullable|image|mimes:jpeg,png,jpg|max:2048',
         ]);
 
         // Cari data siswa berdasarkan NIS
         $siswa = DataSiswa::where('nis', $nis)->firstOrFail();
 
         // Handle photo upload
-        if ($request->hasFile('foto')) {
-            $file = $request->file('foto');
+        if ($request->hasFile('foto_profil')) {
+            $file = $request->file('foto_profil');
             $filename = $file->store('uploads/foto_siswa', 'public');
             $validatedData['foto_profil'] = $filename;
         } else {

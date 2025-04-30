@@ -75,6 +75,7 @@ input[type="password"] {
     width: 100%; /* Mengisi lebar 100% dari container */
     font-size: 16px; /* Ukuran font */
     margin-top: 5px; /* Spasi atas input */
+    box-sizing: border-box;
 }
 
 /* Menambahkan jarak antara inputan dan tombol */
